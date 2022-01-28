@@ -3,7 +3,7 @@
 # Run this script to generate wav files in GLaDOS' voice based on the lines in the input csv.
 # Existing files are not overwritten. Requires curl.
 
-inputfile=audio_default.csv
+inputfile=audio_dreame.csv
 outputdir=output/speech
 
 mkdir -p $outputdir
@@ -15,10 +15,10 @@ while IFS=, read -r name quotedtext; do
   filename="$outputdir/$name"
 
   echo "Processing: $text"
-  if [ ! -f "$filename" ]; then
+  if [ ! -f "${filename}.wav" ]; then
     curl -Ls --retry 30 --get --fail \
       --data-urlencode "text=$text" \
-      -o "$filename" \
+      -o "${filename}.wav" \
       'https://glados.c-net.org/generate'
   fi
 done < $inputfile

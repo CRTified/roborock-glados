@@ -9,4 +9,5 @@ sound_password="r0ckrobo#23456"
 mkdir -p $dir
 
 cd $dir
-tar zc *.wav | ccrypt -e -K "$sound_password" > voicepack.pkg
+tar zcf voicepack_plain.pkg *.ogg
+cat voicepack_plain.pkg | ccrypt -e -K "$sound_password" > voicepack.pkg
